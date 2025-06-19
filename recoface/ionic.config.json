@@ -1,0 +1,8 @@
+{
+  "name": "recoface",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
+

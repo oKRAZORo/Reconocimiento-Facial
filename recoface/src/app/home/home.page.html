@@ -1,0 +1,95 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>RecoFace App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Botones de navegación -->
+  <ion-segment value="registro" (ionChange)="selectTab($event.detail.value?.toString() ?? 'registro')">
+    <ion-segment-button value="registro">Registrarme</ion-segment-button>
+    <ion-segment-button value="lista">Lista de Usuarios</ion-segment-button>
+    <ion-segment-button value="validacion">Validación</ion-segment-button>
+  </ion-segment>
+
+  <!-- Registro -->
+  <div *ngIf="selectedTab === 'registro'" class="form-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Registro de Usuario</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form (submit)="registrarUsuario($event)">
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input type="text" [(ngModel)]="nombre" name="nombre" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label>Foto de rostro</ion-label>
+            <input type="file" accept="image/*" (change)="onFileSelected($event)">
+          </ion-item>
+
+          <ion-button expand="block" type="submit">Registrar</ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Lista de Usuarios -->
+  <div *ngIf="selectedTab === 'lista'">
+    <h2>Usuarios Registrados</h2>
+
+    <ion-card *ngFor="let usuario of usuarios">
+      <ion-card-header>
+        <ion-card-title>{{ usuario.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Email:</strong> {{ usuario.email }}</p>
+        <div *ngIf="usuario.imagen">
+          <img [src]="'http://localhost:5000/' + usuario.imagen" alt="Imagen de {{ usuario.nombre }}" style="width: 100%; max-width: 300px; border-radius: 8px; margin-top: 10px;" />
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div *ngIf="usuarios.length === 0">
+      <p>No hay usuarios registrados.</p>
+    </div>
+  </div>
+
+  <!-- Validación -->
+  <div *ngIf="selectedTab === 'validacion'">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Validación Facial</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+
+        <ion-item lines="none">
+          <ion-label>Seleccionar imagen a validar</ion-label>
+          <input type="file" accept="image/*" (change)="onValidarFileSelected($event)">
+        </ion-item>
+
+        <ion-button expand="block" (click)="validarImagen()">Validar</ion-button>
+
+        <div *ngIf="resultadoValidacion" style="margin-top: 16px;">
+          <ion-label color="primary">{{ resultadoValidacion }}</ion-label>
+        </div>
+
+        <div *ngIf="fotoPerfil" style="text-align: center; margin-top: 16px;">
+          <img [src]="fotoPerfil" alt="Foto de perfil reconocida" style="max-width: 250px; border-radius: 12px;" />
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>
+
+
