@@ -1,0 +1,32 @@
+# === Python / Flask ===
+LibroFlask/venv/
+LibroFlask/_pycache_/
+LibroFlask/*/.pyc
+LibroFlask/.DS_Store
+LibroFlask/*.sqlite3
+
+# === Node / Angular / Ionic (recoface) ===
+recoface/node_modules/
+recoface/.angular/
+recoface/.vscode/
+recoface/www/
+recoface/.DS_Store
+recoface/.env
+
+# === Sistema operativo (Windows/macOS/Linux) ===
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Visual Studio Code ===
+.vscode/
+.history/
+
+# === Entorno virtual global (por si acaso) ===
+env/
+ENV/
+.venv/
