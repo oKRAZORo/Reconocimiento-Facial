@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card *ngFor="let usuario of usuarios">
+    <ion-card-header>
+      <ion-card-title>{{ usuario.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ usuario.email }}</p>
+      <div *ngIf="usuario.imagen">
+        <img [src]="'http://localhost:5000/' + usuario.imagen" alt="Imagen de {{ usuario.nombre }}"
+          style="width: 100%; max-width: 300px; border-radius: 8px; margin-top: 10px;" />
+      </div>
+      <ion-button color="danger" fill="outline" (click)="confirmarEliminar(usuario)">
+        <ion-icon name="trash" slot="start"></ion-icon>
+        Eliminar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="usuarios.length === 0">
+    <ion-label>No hay usuarios registrados.</ion-label>
+  </div>
+</ion-content>

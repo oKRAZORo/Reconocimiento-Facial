@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro de Usuario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (submit)="registrarUsuario($event)">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input type="text" [(ngModel)]="nombre" name="nombre" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email" [(ngModel)]="email" name="email" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>Foto de rostro</ion-label>
+        </ion-item>
+
+        <!-- Botón para tomar foto con cámara -->
+        <ion-button expand="block" fill="outline" color="primary" (click)="tomarFoto()">
+          📷 Tomar foto con la cámara
+        </ion-button>
+
+        <!-- Input tradicional para subir imagen -->
+        <ion-item lines="none">
+          <ion-label>O subir imagen</ion-label>
+          <input type="file" title="Sube tu foto de rostro" accept="image/*" (change)="onFileSelected($event)">
+        </ion-item>
+
+        <ion-button expand="block" type="submit">Registrar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-alert
+    [isOpen]="mostrarAlerta"
+    header="Mensaje"
+    [message]="mensaje"
+    [buttons]="alertButtons"
+    (didDismiss)="cerrarAlerta()">
+  </ion-alert>
+</ion-content>

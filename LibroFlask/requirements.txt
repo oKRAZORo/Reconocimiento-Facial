@@ -2,7 +2,7 @@ aniso8601==10.0.1
 blinker==1.9.0
 click==8.1.8
 colorama==0.4.6
-dlib @ file:///C:/Users/Darwin/S2/LibroFlask/dlib-19.22.99-cp310-cp310-win_amd64.whl
+dlib @ file:///C:/Users/tuty%20situ/Reco/Reconocimiento-Facial/LibroFlask/dlib-19.22.99-cp310-cp310-win_amd64.whl
 face-recognition==1.3.0
 face-recognition-models==0.3.0
 Flask==3.1.0

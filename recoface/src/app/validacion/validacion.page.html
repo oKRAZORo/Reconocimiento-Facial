@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Validación Facial</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Seleccionar Imagen</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item lines="none">
+        <ion-label>Imagen a validar</ion-label>
+        <input type="file" title=" Sube tu imagen" accept="image/*" (change)="onFileSelected($event)">
+      </ion-item>
+
+      <ion-button expand="block" (click)="validarImagen()">Validar</ion-button>
+
+      <div *ngIf="resultadoValidacion" style="margin-top: 16px;">
+        <ion-label color="primary">{{ resultadoValidacion }}</ion-label>
+      </div>
+
+      <div *ngIf="fotoPerfil" style="text-align: center; margin-top: 16px;">
+        <img [src]="fotoPerfil" alt="Foto reconocida" style="max-width: 250px; border-radius: 12px;" />
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>
